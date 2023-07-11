@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar/Navbar";
+import ReactQueryProvider from "@/components/providers/ReactQueryProvider";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -13,8 +14,10 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  authModal,
 }: {
   children: React.ReactNode;
+  authModal: React.ReactNode;
 }) {
   return (
     <html
@@ -22,11 +25,14 @@ export default function RootLayout({
       className={cn("bg-white text-slate-900 antialiased", inter.className)}
     >
       <body className="min-h-screen pt-12 bg-slate-50 antialiased">
-        {/* @ts-expect-error Server Component */}
-        <Navbar />
-        <div className="container max-w-7xl mx-auto h-full pt-12">
-          {children}
-        </div>
+        <ReactQueryProvider>
+          {/* @ts-expect-error Server Component */}
+          <Navbar />
+          {authModal}
+          <div className="container max-w-7xl mx-auto h-full pt-12">
+            {children}
+          </div>
+        </ReactQueryProvider>
         <Toaster />
       </body>
     </html>

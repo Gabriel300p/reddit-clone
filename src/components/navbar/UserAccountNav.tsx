@@ -1,6 +1,7 @@
 import { User } from "next-auth";
 import Link from "next/link";
 import { FC } from "react";
+import UserAvatar from "../UserAvatar";
 import SingOutDropdownButton from "../auth/SingOutDropdownButton";
 import {
   DropdownMenu,
@@ -9,7 +10,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/DropdownMenu";
-import UserAvatar from "./UserAvatar";
 
 interface UserAccountNavProps {
   user: Pick<User, "name" | "image" | "email">;
